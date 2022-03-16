@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_simple_app/screens/post_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_simple_app/cubit/posts_cubit.dart';
+import 'package:flutter_bloc_simple_app/views/post_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +17,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const PostScreen(),
+      home: BlocProvider(
+        create: (context) => PostsCubit()..getPosts(),
+        child: const PostView(),
+      ),
     );
   }
 }
